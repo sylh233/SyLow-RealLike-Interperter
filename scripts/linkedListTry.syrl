@@ -1,0 +1,24 @@
+=>[
+	$stack ? 256,
+	$tp = -1,
+	$push = #(value){
+		tp = tp + 1;
+		?tp stack = value;
+	},
+	$pop = #()[
+		 tp = tp - 1,
+		 ? tp+1 stack
+	],
+	{
+		// $node0 = ("value": 0,"next": null);
+		// $append=#(r_node,v)[{
+		// 	// 我才发现我没有请求内存的功能，还得自己写个栈
+		// 	# push (("value": 0,"next": null));	
+		// },r_node];
+		
+		#push(("value": 0,"next": null));
+		Write ? "value" #pop();
+		// $node0 = #pop();
+		// Write ? "value" node0;
+	},0
+]

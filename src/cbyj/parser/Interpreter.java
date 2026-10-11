@@ -536,22 +536,23 @@ public class Interpreter implements Expr.Visitor<Object>,
 			// }else{
 				
 			// }
-		}else if(select.list instanceof Expr.Literal){
-			String str = stringify(eval(select.list));
-			if(index != null){
-				if(index < 0){
-					index += str.length();
-				}
-				if(index < str.length()){
-					return str.charAt(index);
-				}
-			}
-			// else{
-			// 	throw new RuntimeError(select.ques,
-			// 						   "Array(String) out of bounds("
-			// 						   + str.length() + ")!");
-			// }
-		}else if(select.list instanceof Expr.Variable){
+		}// else if(select.list instanceof Expr.Literal){
+		// 	String str = stringify(eval(select.list));
+		// 	if(index != null){
+		// 		if(index < 0){
+		// 			index += str.length();
+		// 		}
+		// 		if(index < str.length()){
+		// 			return str.charAt(index);
+		// 		}
+		// 	}
+		// 	// else{
+		// 	// 	throw new RuntimeError(select.ques,
+		// 	// 						   "Array(String) out of bounds("
+		// 	// 						   + str.length() + ")!");
+		// 	// }
+		// }
+		else if(select.list instanceof Expr.Variable){
 			Expr.Variable var = (Expr.Variable)select.list;
 			Object object = environment.get(var.name);
 			if(object instanceof rl_Array){
@@ -592,6 +593,22 @@ public class Interpreter implements Expr.Visitor<Object>,
 						if(index < str.length()){
 							return str.charAt(index);
 						}
+					}
+				}
+			}
+		}else{
+		    Object rla = eval(select.list);
+			if(rla instanceof rl_Array){
+				rl_Array array = (rl_Array)rla;
+				return array.get(condition);
+			}else{
+				String str = stringify(rla);
+				if(index != null){
+					if(index < 0){
+						index += str.length();
+					}
+					if(index < str.length()){
+						return str.charAt(index);
 					}
 				}
 			}

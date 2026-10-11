@@ -37,8 +37,10 @@ public class cbyj {
 				switch (args[0]) {
 				case "file":
 					runFile(args[1]);
+					break;
 				case "load":
 					runLoad(args[1]);
+					break;
 				default:
 					System.out.println("Have no the Mode:" +
 									   args[0] + "!");

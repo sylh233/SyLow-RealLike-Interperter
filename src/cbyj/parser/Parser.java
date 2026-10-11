@@ -207,9 +207,10 @@ public class Parser {
 		Token qors = previous();
 		Expr condition = expr();
 		Expr list;
-		if(match(STRING,I32,F64,C16,TRUE,FALSE,NULL)){
-			list = new Expr.Literal(previous().literal);
-		}else if(match(IDENTIFIER)){
+		// if(match(STRING,I32,F64,C16,TRUE,FALSE,NULL)){
+		// 	list = new Expr.Literal(previous().literal);
+		// }else 
+		if(match(IDENTIFIER)){
 			list = new Expr.Variable(previous());
 		}else if(match(LEFT_PAREN)){
 			list = arrayExpr();
